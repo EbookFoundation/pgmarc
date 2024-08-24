@@ -296,8 +296,8 @@ def stub(dc):
           record.add_ordered_field(field245)
 
     # Publisher, date
-  for att in dc.book.attributes:
-    if att.fk_attriblist == 260:
+    for att in dc.book.attributes:
+      if att.fk_attriblist == 260:
         field260 = Field(
             tag='260',
             indicators=[' ', ' '],
@@ -307,18 +307,11 @@ def stub(dc):
                 Subfield(code='c', value=str(dc.pubinfo.years).replace('[(\'copyright\', \'', 'c').replace('\'), (\'pubdate\', \'', ', ').replace('\'), (\'copyright\', \'', ', c').replace('\')]', '.')),
             ]
         )
-    elif att.fk_attriblist == 906:
-        field260 = Field(
-            tag='260',
-            indicators=[' ', ' '],
-            subfields=[
-                Subfield(code='a', value='[S.l. :'),
-                Subfield(code='b', value='s.n.]'),
-                Subfield(code='c', value=str(att.text)),
-            ]
-        )
+        record.add_ordered_field(field260)
+        break
+
     else:
-        field260 = Field(
+      field260 = Field(
             tag='260',
             indicators=[' ', ' '],
             subfields=[
@@ -326,7 +319,7 @@ def stub(dc):
                 Subfield(code='b', value='s.n.]'),
             ]
         )
-    record.add_ordered_field(field260)
+      record.add_ordered_field(field260)
 
     add_license(record, dc)
 
