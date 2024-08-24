@@ -66,6 +66,19 @@ def stub(dc):
         record.add_ordered_field(field010)
 
 
+    for att in dc.book.attributes:
+     if att.fk_attriblist == 20:
+    
+        field010 = pymarc.Field(
+            tag='020',
+            indicators=[' ', ' '],
+            subfields=[
+               Subfield(code='a', value=str(att.text)),
+               ]
+               )
+        record.add_ordered_field(field020)
+
+
     field040 = pymarc.Field(
             tag='040',
             indicators=[' ', ' '],
@@ -200,6 +213,32 @@ def stub(dc):
                ]
                )
         record.add_ordered_field(field508)
+
+    for att in dc.book.attributes:
+     if att.fk_attriblist == 520:
+    
+        field508 = pymarc.Field(
+            tag='520',
+            indicators=[' ', ' '],
+            subfields=[
+               Subfield(code='a', value=str(att.text)),
+               ]
+               )
+        record.add_ordered_field(field520)
+
+    for att in dc.book.attributes:
+     if att.fk_attriblist == 546:
+    
+        field508 = pymarc.Field(
+            tag='546',
+            indicators=[' ', ' '],
+            subfields=[
+               Subfield(code='a', value=str(att.text)),
+               ]
+               )
+        record.add_ordered_field(field546)
+
+
 
     for subject in dc.subjects:
     
